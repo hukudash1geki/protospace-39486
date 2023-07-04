@@ -1,4 +1,5 @@
 class PrototypesController < ApplicationController
+  before_action :set_proto, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit]
   def index
     @proto = Prototype.includes(:user)
@@ -19,19 +20,15 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    @proto = Prototype.find(params[:id])
     @comment = Comment.new
     @comments = @proto.comments.includes(:user)
     
   end
 
   def edit
-    @proto = Prototype.find(params[:id])
   end
 
   def update
-    @proto = Prototype.find(params[:id])
-
     if @proto.update(proto_params)
       redirect_to root_path
     else
@@ -40,8 +37,7 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    proto = Prototype.find(params[:id])
-    proto.destroy
+    @proto.destroy
     redirect_to root_path
   end
 
@@ -58,6 +54,8 @@ class PrototypesController < ApplicationController
     end
   end
  
-
+  def set_proto
+    @proto = Prototype.find(params[:id])
+  end
 
 end
