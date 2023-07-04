@@ -1,6 +1,7 @@
 class PrototypesController < ApplicationController
 
   def index
+    @proto = Prototype.all
   end
 
   def new
@@ -15,6 +16,10 @@ class PrototypesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @proto = Prototype.find(params[:id])
   end
 
   private
