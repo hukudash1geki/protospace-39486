@@ -10,7 +10,7 @@ class PrototypesController < ApplicationController
 
   def create
     @proto = Prototype.new(proto_params)
-    @proto.save
+
     if @proto.save
       redirect_to root_path
     else
@@ -20,6 +20,20 @@ class PrototypesController < ApplicationController
 
   def show
     @proto = Prototype.find(params[:id])
+  end
+
+  def edit
+    @proto = Prototype.find(params[:id])
+  end
+
+  def update
+    @proto = Prototype.find(params[:id])
+
+    if @proto.update(proto_params)
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
