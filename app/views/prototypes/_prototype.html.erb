@@ -5,6 +5,6 @@
     <p class="card__summary">
       <%= proto.catch_copy %>
     </p>
-    <%= link_to proto.concept, prototype_path(proto.id), class: :card__user %>
+    <%= link_to "by " + proto.user.name, prototype_path(proto.id), class: :card__user %>
   </div>
 </div>
