@@ -1,7 +1,7 @@
 class PrototypesController < ApplicationController
 
   def index
-    @proto = Prototype.all
+    @proto = Prototype.includes(:user)
   end
 
   def new
